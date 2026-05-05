@@ -38,8 +38,11 @@ ENV NODE_ENV=production
 # Run as the built-in non-root `node` user.
 USER node
 
+## With npm workspaces, dependencies hoist into the root /app/node_modules
+## (no per-workspace node_modules unless a version conflict forces one).
+## So we copy only the root tree plus the server's compiled dist + manifest.
 COPY --from=builder --chown=node:node /app/node_modules ./node_modules
-COPY --from=builder --chown=node:node /app/server/node_modules ./server/node_modules
+COPY --from=builder --chown=node:node /app/package.json ./package.json
 COPY --from=builder --chown=node:node /app/server/dist ./server/dist
 COPY --from=builder --chown=node:node /app/server/package.json ./server/package.json
 
