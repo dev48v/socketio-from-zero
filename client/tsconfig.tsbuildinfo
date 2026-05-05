@@ -1,0 +1,1 @@
+{"root":["./src/app.tsx","./src/main.tsx","./src/socket.ts","./src/types.ts","./src/components/connbadge.tsx","./src/components/sparkline.tsx","./src/components/stockcell.tsx","./src/hooks/usesocket.ts","./src/hooks/usestocks.ts","./src/hooks/usetickseries.ts","./src/pages/detail.tsx","./src/pages/home.tsx"],"version":"5.9.3"}
