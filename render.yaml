@@ -1,0 +1,24 @@
+# Render Blueprint for the Socket.io backend.
+#
+# - `env: docker` because we already wrote a Dockerfile (we don't want
+#   Render's nodejs preset to re-install dependencies a second time).
+# - `dockerfilePath` is the path *inside* the repo. Render's API needs
+#   this updated AFTER service creation; the auto-detect picks the root
+#   Dockerfile if there is one.
+# - Free plan sleeps after 15 minutes of inactivity. A `/healthz` route
+#   is mounted on the http server so external monitors can keep it warm
+#   during market hours.
+services:
+  - type: web
+    name: socketio-from-zero
+    runtime: docker
+    dockerfilePath: ./server/Dockerfile
+    dockerContext: .
+    plan: free
+    region: oregon
+    healthCheckPath: /healthz
+    envVars:
+      - key: FINNHUB_API_KEY
+        sync: false
+      - key: NODE_ENV
+        value: production
