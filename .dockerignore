@@ -4,6 +4,12 @@ node_modules
 .git
 .env
 .env.local
-client
+.env.example
 *.md
 linkedin-image.html
+client/src
+client/index.html
+client/vite.config.ts
+client/tsconfig.json
+client/vercel.json
+client/.env.example
